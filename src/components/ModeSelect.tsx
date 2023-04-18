@@ -10,29 +10,28 @@ interface Props {
 
 const ModeSelect = ({className}: Props) => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: any) => state.game.modes);
-    // console.log(mode);
+    const modes = useSelector((state: any) => state.game.modes);
 
-    const options = [
-        {value: '5', label: '5'},
-        {value: '10', label: '10'},
-        {value: '15', label: '15'}
-    ]
+    const [options, setOptions] = useState();
+    const [value, setValue] = useState<SingleValue<{ value: string; label: string; }>>(modes[0]);
 
-    const [value, setValue] = useState<SingleValue<{ value: string; label: string; }>>(options[0]);
+    useEffect(() => {
+        setOptions(modes.map((item: { name: string, field: number, id: string }) => {
+            return {
+                value: item.field, label: item.name
+            }
+        }))
+    }, [modes])
 
-    useEffect(()=>{
-        console.log(mode)
-    },[mode])
     const handleSubmit = () => {
-        if (value){
+        if (value) {
             dispatch(setSize(parseInt(value.value)));
         }
     };
 
     return (
         <div className={className}>
-            <Select options={mode} defaultValue={value} onChange={(v) => setValue(v)}/>
+            <Select options={options} defaultValue={value} onChange={(v) => setValue(v)}/>
             <button onClick={handleSubmit}>Pick</button>
         </div>
     );

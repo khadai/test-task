@@ -2,7 +2,6 @@ import React from 'react';
 import styled from "styled-components";
 import {Square} from "../components";
 import {useSelector} from "react-redux";
-import ModeSelect from "../components/ModeSelect";
 
 interface Props {
     className?: string;
@@ -10,8 +9,6 @@ interface Props {
 
 const Field = ({className}: Props) => {
     const fieldSize = useSelector((state: any) => state.game.fieldSize);
-
-
     const sizeArr = new Array(fieldSize).fill(null);
 
     const row = <div className='row'>
@@ -20,12 +17,13 @@ const Field = ({className}: Props) => {
         ))}
     </div>;
 
+    const gameField = sizeArr.map(() =>
+        row
+    )
+
     return (
         <div className={className}>
-            {sizeArr.map(() =>
-                row
-            )}
-            <ModeSelect/>
+            {fieldSize < 1 ? <p>Please choose game mode</p> : gameField}
         </div>
     );
 };
