@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import Field from "./layouts/Field";
+import {GameField} from "./layouts";
 import axios from "axios";
 import {setModes} from "./redux/slice";
 import {useDispatch} from "react-redux";
-import ModeSelect from "./components/ModeSelect";
+import {ModeSelect} from "./components";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const App = () => {
     return (
         <div className="App">
             <ModeSelect/>
-            <Field/>
+            <GameField/>
         </div>
     );
 }

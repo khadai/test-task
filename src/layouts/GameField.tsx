@@ -7,18 +7,16 @@ interface Props {
     className?: string;
 }
 
-const Field = ({className}: Props) => {
+const GameField = ({className}: Props) => {
     const fieldSize = useSelector((state: any) => state.game.fieldSize);
     const sizeArr = new Array(fieldSize).fill(null);
 
-    const row = <div className='row'>
-        {sizeArr.map((i, idx) => (
-            <Square key={idx} size={fieldSize}/>
-        ))}
-    </div>;
-
-    const gameField = sizeArr.map(() =>
-        row
+    const gameField = sizeArr.map((j, rowIdx) =>
+        <div className='row'>
+            {sizeArr.map((i, colIdx) => (
+                <Square key={colIdx+rowIdx} size={fieldSize} rowIndex={rowIdx} columnIndex={colIdx}/>
+            ))}
+        </div>
     )
 
     return (
@@ -28,7 +26,7 @@ const Field = ({className}: Props) => {
     );
 };
 
-export default styled(Field)`
+export default styled(GameField)`
   border: 1px black solid;
   width: 500px;
   height: 500px;
