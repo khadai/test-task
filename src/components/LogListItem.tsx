@@ -16,11 +16,12 @@ const LogListItem = ({className, rowIndex, columnIndex}: Props) => {
 };
 
 export default styled(LogListItem)`
+  height: 48px;
   text-align: center;
-    background-color: lightgoldenrodyellow;
-    border: orange 1px solid;
-    border-radius: 10px;
-    margin: 4px;
-    padding: 4px;
-    color: peru;
+  background-color: lightgoldenrodyellow;
+  border: orange 1px solid;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 4px;
+  color: peru;
 `;

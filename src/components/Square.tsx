@@ -1,38 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
-import {addActiveSquare, removeActiveSquare, setModes} from "../redux/slice";
+import {useDispatch} from "react-redux";
+import {addActiveSquare, removeActiveSquare, resetActiveSquares} from "../redux/slice";
 
 interface Props {
     className?: string;
     size: number;
-    rowIndex:number;
-    columnIndex:number;
+    rowIndex: number;
+    columnIndex: number;
 }
 
-const Square = ({className, rowIndex, columnIndex}: Props) => {
+const Square = ({className, rowIndex, columnIndex, size}: Props) => {
     const [active, setActive] = useState(false);
     const dispatch = useDispatch();
-    const activeSquares = useSelector((state: any) => state.game.activeSquares);
 
     const handleMouseOver = () => {
         setActive(!active)
     };
 
-    useEffect(()=>{
-        console.log(activeSquares)
-    }, [activeSquares])
+    useEffect(() => {
+        setActive(false);
+    }, [size])
 
-    useEffect(()=>{
-        if (active){
-            dispatch(addActiveSquare({rowIndex,columnIndex}));
-        }else {
-            dispatch(removeActiveSquare({rowIndex:rowIndex,columnIndex:columnIndex}));
+    useEffect(() => {
+        if (active) {
+            dispatch(addActiveSquare({rowIndex, columnIndex}));
+        } else {
+            dispatch(removeActiveSquare({rowIndex, columnIndex}));
         }
     }, [active])
 
     return (
-        <div className={className} onMouseOver={handleMouseOver} style={{backgroundColor: active ? "lightblue" : "white"}}>
+        <div className={className} onMouseOver={handleMouseOver}
+             style={{backgroundColor: active ? "lightblue" : "white"}}>
         </div>
     );
 };

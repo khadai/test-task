@@ -25,7 +25,7 @@ const gameSlice = createSlice({
         addActiveSquare: (state, action: PayloadAction<{ rowIndex: number, columnIndex: number }>) => {
             return {
                 ...state,
-                activeSquares: [...state.activeSquares, action.payload]
+                activeSquares: [action.payload, ...state.activeSquares]
             }
         },
         removeActiveSquare: (state, action: PayloadAction<{ rowIndex: number, columnIndex: number }>) => {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import Select, {SingleValue} from "react-select";
 import {useDispatch, useSelector} from "react-redux";
-import {setSize} from "../redux/slice";
+import {resetActiveSquares, setSize} from "../redux/slice";
 
 interface Props {
     className?: string;
@@ -31,11 +31,27 @@ const ModeSelect = ({className}: Props) => {
 
     return (
         <div className={className}>
-            <Select options={options} defaultValue={value} onChange={(v) => setValue(v)}/>
-            <button onClick={handleSubmit}>Pick</button>
+            <Select options={options} defaultValue={value} onChange={(v) => setValue(v)} className='mode-select'/>
+            <button onClick={handleSubmit} className='mode-start-btn'>START</button>
         </div>
     );
 };
 
 export default styled(ModeSelect)`
+  display: flex;
+  margin: 8px;
+
+  .mode-select {
+    width: 60%;
+  }
+  
+  .mode-start-btn{
+    width: 80px;
+    margin-left: 8px;
+    background-color: cornflowerblue;
+    text-transform: capitalize;
+    color: white;
+    border-radius: 4px;
+    border: none;
+  }
 `;

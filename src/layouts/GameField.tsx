@@ -28,8 +28,8 @@ const GameField = ({className}: Props) => {
 
 export default styled(GameField)`
   border: 1px black solid;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  //height: 500px;
 
   .row {
     display: flex;

@@ -22,17 +22,42 @@ const App = ({className}: Props) => {
 
     return (
         <div className={className}>
-            <div>
-                <ModeSelect/>
-                <GameField/>
-            </div>
-            <div>
-                <LogList/>
+            <div className='content'>
+                <div className='content-game-field'>
+                    <ModeSelect/>
+                    <GameField/>
+                </div>
+                <div  className='content-game-log'>
+                    <LogList/>
+                </div>
             </div>
         </div>
     );
 }
 
 export default styled(App)`
-  display: flex;
+  width: 1024px;
+  margin-left: auto;
+  box-sizing: border-box;
+  margin-right: auto;
+  display: block;
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    .content-game-field{
+      flex-grow: 9;
+    }
+    
+    .content-game-log{
+      flex-grow: 6;
+    }
+  }
+
+  @media (max-width: 950px) {
+    width:300px;
+  }
 `;
