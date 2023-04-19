@@ -21,7 +21,6 @@ const App = ({className}: Props) => {
                         value: item.field, label: item.name
                     }
                 })
-                console.log(modes);
                 dispatch(setModes(modes));
             })
     });

@@ -19,9 +19,9 @@ const GameField = ({className}: Props) => {
     }, [fieldSize])
 
     const gameField = sizeArr.map((j, rowIdx) =>
-        <div className='row'>
+        <div className='row' key={rowIdx}>
             {sizeArr.map((i, colIdx) => (
-                <Square key={colIdx + rowIdx} size={fieldSize} rowIndex={rowIdx} columnIndex={colIdx}/>
+                <Square key={`${rowIdx}${colIdx}`} size={fieldSize} rowIndex={rowIdx} columnIndex={colIdx}/>
             ))}
         </div>
     )

@@ -14,8 +14,9 @@ const LogList = ({className}: Props) => {
         <div className={className}>
             <h1 className='log-list-header'>Hover squares:</h1>
             <div className='log-list'>
-                {activeSquares.map((square: { rowIndex: number; columnIndex: number; }) =>
-                    (<LogListItem rowIndex={square.rowIndex + 1} columnIndex={square.columnIndex + 1}/>)
+                {activeSquares.map(({rowIndex, columnIndex}: { rowIndex: number; columnIndex: number; }) =>
+                    (<LogListItem key={`${rowIndex}${columnIndex}`} rowIndex={rowIndex + 1}
+                                  columnIndex={columnIndex + 1}/>)
                 )}
             </div>
         </div>
