@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {addActiveSquare, removeActiveSquare, resetActiveSquares} from "../redux/slice";
+import {addActiveSquare, removeActiveSquare} from "../redux/slice";
 
 interface Props {
     className?: string;
@@ -21,6 +21,7 @@ const Square = ({className, rowIndex, columnIndex, size}: Props) => {
     useEffect(() => {
         setActive(false);
     }, [size])
+
 
     useEffect(() => {
         if (active) {

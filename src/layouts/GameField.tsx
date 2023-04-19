@@ -1,27 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
-import {Square} from "../components";
-import {useSelector} from "react-redux";
+import {ChooseMode, Square} from "../components";
+import {useDispatch, useSelector} from "react-redux";
+import {resetActiveSquares} from "../redux/slice";
 
 interface Props {
     className?: string;
 }
 
 const GameField = ({className}: Props) => {
+    const dispatch = useDispatch();
+
     const fieldSize = useSelector((state: any) => state.game.fieldSize);
     const sizeArr = new Array(fieldSize).fill(null);
+
+    useEffect(() => {
+        dispatch(resetActiveSquares());
+    }, [fieldSize])
 
     const gameField = sizeArr.map((j, rowIdx) =>
         <div className='row'>
             {sizeArr.map((i, colIdx) => (
-                <Square key={colIdx+rowIdx} size={fieldSize} rowIndex={rowIdx} columnIndex={colIdx}/>
+                <Square key={colIdx + rowIdx} size={fieldSize} rowIndex={rowIdx} columnIndex={colIdx}/>
             ))}
         </div>
     )
 
     return (
         <div className={className}>
-            {fieldSize < 1 ? <p>Please choose game mode</p> : gameField}
+            {fieldSize < 1 ? <ChooseMode/> : gameField}
         </div>
     );
 };
@@ -29,7 +36,6 @@ const GameField = ({className}: Props) => {
 export default styled(GameField)`
   border: 1px black solid;
   width: 100%;
-  //height: 500px;
 
   .row {
     display: flex;

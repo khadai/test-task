@@ -15,7 +15,13 @@ const App = ({className}: Props) => {
     useEffect(() => {
         axios.get(`https://60816d9073292b0017cdd833.mockapi.io/modes`)
             .then(res => {
-                const modes = res.data;
+                let modes = res.data;
+                modes = modes.map((item: { name: string, field: number, id: string }) => {
+                    return {
+                        value: item.field, label: item.name
+                    }
+                })
+                console.log(modes);
                 dispatch(setModes(modes));
             })
     });
@@ -27,7 +33,7 @@ const App = ({className}: Props) => {
                     <ModeSelect/>
                     <GameField/>
                 </div>
-                <div  className='content-game-log'>
+                <div className='content-game-log'>
                     <LogList/>
                 </div>
             </div>
@@ -44,20 +50,20 @@ export default styled(App)`
 
   .content {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: space-between;
     flex-wrap: wrap;
-    
-    .content-game-field{
+
+    .content-game-field {
       flex-grow: 9;
     }
-    
-    .content-game-log{
-      flex-grow: 6;
+
+    .content-game-log {
+      flex-grow: 3;
     }
   }
 
   @media (max-width: 950px) {
-    width:300px;
+    width: 300px;
   }
 `;

@@ -25,11 +25,11 @@ const LogList = ({className}: Props) => {
 export default styled(LogList)`
   padding: 8px;
   width: 100%;
-  
-  .log-list-header{
+
+  .log-list-header {
     margin: 8px;
   }
-  
+
   .log-list {
     height: 500px;
     overflow: hidden;
