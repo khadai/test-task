@@ -27,13 +27,12 @@ const Square = ({className, rowIndex, columnIndex}: Props) => {
         if (active){
             dispatch(addActiveSquare({rowIndex,columnIndex}));
         }else {
-            dispatch(removeActiveSquare({rowIndex,columnIndex}));
+            dispatch(removeActiveSquare({rowIndex:rowIndex,columnIndex:columnIndex}));
         }
     }, [active])
 
     return (
         <div className={className} onMouseOver={handleMouseOver} style={{backgroundColor: active ? "lightblue" : "white"}}>
-            <p className='test'>{rowIndex} {columnIndex}</p>
         </div>
     );
 };
@@ -44,8 +43,4 @@ export default styled(Square)`
   height: 0;
   width: ${({size}) => 100 / size}%;
   padding-top: ${({size}) => 100 / size}%;
-  
-  .test{
-    position: absolute;
-  }
 `;

@@ -1,13 +1,18 @@
 import React, {useEffect} from 'react';
-import {GameField} from "./layouts";
+import {GameField, LogList} from "./layouts";
 import axios from "axios";
 import {setModes} from "./redux/slice";
 import {useDispatch} from "react-redux";
 import {ModeSelect} from "./components";
+import styled from "styled-components";
 
-const App = () => {
+interface Props {
+    className?: string;
+}
+
+const App = ({className}: Props) => {
     const dispatch = useDispatch();
-    useEffect(()=> {
+    useEffect(() => {
         axios.get(`https://60816d9073292b0017cdd833.mockapi.io/modes`)
             .then(res => {
                 const modes = res.data;
@@ -16,11 +21,18 @@ const App = () => {
     });
 
     return (
-        <div className="App">
-            <ModeSelect/>
-            <GameField/>
+        <div className={className}>
+            <div>
+                <ModeSelect/>
+                <GameField/>
+            </div>
+            <div>
+                <LogList/>
+            </div>
         </div>
     );
 }
 
-export default App;
+export default styled(App)`
+  display: flex;
+`;
